@@ -19,12 +19,14 @@
 const express = require('express');
 const session = require('express-session');
 const hbs = require('hbs');
+const audit = require('express-requests-logger');
 const auth = require('./libs/auth');
 const app = express();
 
 app.set('view engine', 'html');
 app.engine('html', hbs.__express);
 app.set('views', './views');
+app.use(audit());
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.static('dist'));
